@@ -148,8 +148,6 @@
           if (item.__IS__FLAT__OPTIONS) isFlat = true;
 
           if (!item.disabled) {
-          
-            // 点击节点逻辑修改： 点击根节点即为选中，鼠标移入为展开
             events.on.click = () => {
               this.select(item, menuIndex);
               this.$nextTick(() => this.scrollMenu(this.$refs.menus[menuIndex]));
@@ -165,27 +163,6 @@
                 });
               };
             }
-            /*
-            if (item.children) {
-              let triggerEvent = {
-                click: 'click',
-                hover: 'mouseenter'
-              }[expandTrigger];
-              events.on[triggerEvent] = () => {
-                this.activeItem(item, menuIndex);
-                this.$nextTick(() => {
-                  // adjust self and next level
-                  this.scrollMenu(this.$refs.menus[menuIndex]);
-                  this.scrollMenu(this.$refs.menus[menuIndex + 1]);
-                });
-              };
-            } else {
-              events.on.click = () => {
-                this.select(item, menuIndex);
-                this.$nextTick(() => this.scrollMenu(this.$refs.menus[menuIndex]));
-              };
-            }
-            */
           }
 
           return (

@@ -68,6 +68,7 @@
         };
         let valid = true;
         let count = 0;
+        let allMessages = [];
         // 如果需要验证的fields为空，调用验证时立刻返回callback
         if (this.fields.length === 0 && callback) {
           callback(true);
@@ -76,9 +77,14 @@
           field.validate('', errors => {
             if (errors) {
               valid = false;
+              allMessages.push({
+                prop: field.prop,
+                label: field.label,
+                message: errors
+              });
             }
             if (typeof callback === 'function' && ++count === this.fields.length) {
-              callback(valid);
+              callback(valid, allMessages);
             }
           });
         });
